@@ -1,16 +1,15 @@
 package com.wavestone.shop.adapters.rest.order;
 
+import com.wavestone.shop.dto.order.OrderDisplayDto;
+import com.wavestone.shop.dto.order.PageLiteDto;
 import com.wavestone.shop.order.application.FindOrderService;
 import com.wavestone.shop.order.application.ManageOrderService;
-import com.wavestone.shop.dto.order.OrderDisplayDto;
 import com.wavestone.shop.dto.order.OrderDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.util.List;
 
 @RestController
 @Slf4j
@@ -21,7 +20,7 @@ public class OrderController {
 	private final FindOrderService findOrderService;
 
 	@GetMapping
-	public List<OrderDisplayDto> getAllOrders(
+	public PageLiteDto<OrderDisplayDto> getAllOrders(
 		@RequestBody OrderGetterDto orderGetterDto
 	) {
 		return findOrderService.findAllOrders(orderGetterDto);

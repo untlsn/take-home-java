@@ -22,6 +22,8 @@ public class OrderDisplayDto {
 		headerStatus = orderHeader.getStatus();
 		customerEmail = orderHeader.getCustomer().getEmail();
 
+
+
 		orderLines = orderHeader.getOrderLines().stream()
 			.map(OrderDisplayLineDto::new)
 			.collect(Collectors.toList());
