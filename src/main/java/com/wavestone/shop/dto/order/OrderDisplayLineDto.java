@@ -5,9 +5,11 @@ import com.wavestone.shop.domain.OrderLine;
 public class OrderDisplayLineDto {
 	public Long id;
 	public Integer quantity;
+	public String productName;
 
 	public OrderDisplayLineDto(OrderLine orderLine) {
 		id = orderLine.getId();
 		quantity = orderLine.getQuantity();
+		productName = orderLine.getProduct().getName();
 	}
 }

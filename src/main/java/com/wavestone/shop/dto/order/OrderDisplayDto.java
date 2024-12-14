@@ -13,7 +13,6 @@ public class OrderDisplayDto {
 	public OrderHeaderStatus headerStatus;
 
 	public String customerEmail;
-	public String productName;
 	public List<OrderDisplayLineDto> orderLines;
 
 
@@ -21,6 +20,7 @@ public class OrderDisplayDto {
 		headerId = orderHeader.getId();
 		headerOrderDate = orderHeader.getOrderDate();
 		headerStatus = orderHeader.getStatus();
+		customerEmail = orderHeader.getCustomer().getEmail();
 
 		orderLines = orderHeader.getOrderLines().stream()
 			.map(OrderDisplayLineDto::new)

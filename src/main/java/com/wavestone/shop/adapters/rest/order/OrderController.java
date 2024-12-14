@@ -21,8 +21,10 @@ public class OrderController {
 	private final FindOrderService findOrderService;
 
 	@GetMapping
-	public List<OrderDisplayDto> getAllOrders() {
-		return findOrderService.findAllOrders();
+	public List<OrderDisplayDto> getAllOrders(
+		@RequestBody OrderGetterDto orderGetterDto
+	) {
+		return findOrderService.findAllOrders(orderGetterDto);
 	}
 
 	@PostMapping
