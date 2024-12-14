@@ -55,5 +55,4 @@ public class OrderHeader {
 		orderLines.add(line);
 		line.setOrder(this);
 	}
-
 }
