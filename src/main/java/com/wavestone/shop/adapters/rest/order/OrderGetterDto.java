@@ -42,6 +42,6 @@ public record OrderGetterDto(
 	 * Check if filter and filterBy both exist or not so you can throw exception if it returns false
 	 */
 	public Boolean haveValidFilter() {
-		return (filter == null && filterBy == null) || (filter != null && filterBy != null);
+		return (filter == null && filterBy.isEmpty()) || (filter != null && filterBy.isPresent());
 	}
 }
