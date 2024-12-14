@@ -1,8 +1,8 @@
 package com.wavestone.shop.order.application;
 
 import com.wavestone.shop.domain.*;
-import com.wavestone.shop.dto.order.OrderDto;
-import com.wavestone.shop.dto.order.OrderLineDto;
+import com.wavestone.shop.dto.order.OrderCreateDto;
+import com.wavestone.shop.dto.order.OrderLineCreateDto;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ public class ManageOrderService {
 	private final CustomerRepository customerRepository;
 	private final ProductRepository productRepository;
 
-	public Long createOrder(OrderDto order) throws EntityNotFoundException {
+	public Long createOrder(OrderCreateDto order) throws EntityNotFoundException {
 		var customer = customerRepository.findById(order.customer())
 			.orElseThrow(() -> new EntityNotFoundException("Customer not found"));
 		var orderLines = convertToOrderLines(order.orderLine());
@@ -36,7 +36,7 @@ public class ManageOrderService {
 	/**
 	 * Convert list of OrderLineDto to list of OrderLine models
 	 */
-	List<OrderLine> convertToOrderLines(List<OrderLineDto> orderLinesDto) {
+	List<OrderLine> convertToOrderLines(List<OrderLineCreateDto> orderLinesDto) {
 		if (orderLinesDto == null || orderLinesDto.isEmpty())
 			throw new IllegalArgumentException("OrderLines cannot be empty");
 

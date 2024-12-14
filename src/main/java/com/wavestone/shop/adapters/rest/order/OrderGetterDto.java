@@ -6,23 +6,41 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-@Getter
-public class OrderGetterDto {
+import java.util.Optional;
 
-	Integer page = 0;
-	Sort.Direction sortDirection = Sort.Direction.ASC;
-	String sortBy = "id";
-	FindOrderFilterEnum filterBy;
-	String filter = "";
+/**
+ * Dto record collecting RequestParam of order getter.
+ * Just push all request params to constructor
+ */
+public record OrderGetterDto(
+	Integer page,
+	Sort.Direction sortDirection,
+	String sortBy,
+	Optional<FindOrderFilterEnum> filterBy,
+	String filter
+) {
 
+	/**
+	 * Its give empty Optional when filterBy is empty of filter is null, so you can be sure that filtering is necessary
+	 */
+	public Optional<FindOrderFilterEnum> getFilterBy() {
+		return filter == null ? Optional.empty() : filterBy;
+	}
+
+	/**
+	 * Generate from page, sortDirection and sortBy Pageable object used in JpaRepositories
+	 */
 	public Pageable pageable() {
-		return PageRequest.of(page == null ? 0 : page, 10, sort());
+		return PageRequest.of(page, 10, sort());
 	}
 
 	private Sort sort() {
 		return Sort.by(sortDirection, sortBy);
 	}
 
+	/**
+	 * Check if filter and filterBy both exist or not so you can throw exception if it returns false
+	 */
 	public Boolean haveValidFilter() {
 		return (filter == null && filterBy == null) || (filter != null && filterBy != null);
 	}

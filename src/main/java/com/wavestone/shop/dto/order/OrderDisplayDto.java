@@ -7,6 +7,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Expose only necessary data that will be parsed to json
+ */
 public class OrderDisplayDto {
 	public Long headerId;
 	public LocalDateTime headerOrderDate;

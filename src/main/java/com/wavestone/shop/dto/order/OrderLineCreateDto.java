@@ -3,7 +3,10 @@ package com.wavestone.shop.dto.order;
 import com.wavestone.shop.domain.OrderLine;
 import com.wavestone.shop.domain.Product;
 
-public record OrderLineDto(
+/**
+ * Record with minimal data to create OrderLine and connected OrderLines
+ */
+public record OrderLineCreateDto(
 	String description, Integer quantity, Long product
 ) {
 	public OrderLine toOrderLine(Product product) {

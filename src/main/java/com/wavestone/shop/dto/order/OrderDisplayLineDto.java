@@ -2,6 +2,9 @@ package com.wavestone.shop.dto.order;
 
 import com.wavestone.shop.domain.OrderLine;
 
+/**
+ * Part of OrderDisplayDto responsible for OrderLines of OrderHeader
+ */
 public class OrderDisplayLineDto {
 	public Long id;
 	public Integer quantity;

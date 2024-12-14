@@ -8,9 +8,16 @@ import com.wavestone.shop.domain.OrderLine;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public record OrderDto(
-	String description, List<OrderLineDto> orderLine, Long customer
+/**
+ * Record with minimal data to create OrderHeader and connected OrderLines
+ */
+public record OrderCreateDto(
+	String description, List<OrderLineCreateDto> orderLine, Long customer
 ) {
+
+	/**
+	 * Return OrderHeader with connected OrderLines based on OrderCreateDto so you can save it to database
+	 */
 	public OrderHeader toOrderHeader(Customer customer, List<OrderLine> lines) {
 		var orderHeader = new OrderHeader();
 
